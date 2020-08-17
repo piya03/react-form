@@ -1,0 +1,22 @@
+.inputBox{
+    position: relative;
+    height: 60px;
+}
+.inputLable{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+    background-color: white;
+    padding: 0px 2px;
+}
+
+.input{
+    position: absolute;
+    padding:4px 8px 4px 16px;
+    min-width: 300px;
+    border-radius: 5px;
+    border: 1px solid;
+    height: 41px;
+    font-size: 16px;
+}
