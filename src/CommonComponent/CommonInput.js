@@ -1,14 +1,28 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
 
-function CommonInput({ value, onChange, label }) {
+function CommonInput({ value, onChangeFun, onBlurFun, label }) {
   const lableRef = useRef(null);
   const inputRef = useRef(null);
-  useEffect(() => {
-    //inputRef.current.style.backgroundColor = "red";
-    console.log("CommonInput -> inputRef", inputRef);
-  });
-  //inputRef.current.backgroundColor = "red";
+  const [val, setVal] = useState("");
+  function onfocusFun() {
+    lableRef.current.style.top = "-10px";
+    lableRef.current.style.left = "12px";
+    lableRef.current.style.transition = "all .2s";
+  }
+  function onBlurFun() {
+    if (val) {
+      return;
+    }
+    lableRef.current.style.top = "15px";
+    lableRef.current.style.left = "15px";
+    lableRef.current.style.transition = "all .2s";
+  }
+
+  function onChangeFun(e) {
+    setVal(e.target.value);
+  }
+
   return (
     <div>
       <div className="inputBox">
@@ -19,8 +33,10 @@ function CommonInput({ value, onChange, label }) {
           ref={inputRef}
           className="input"
           type="text"
-          value={value}
-          onChange={onChange}
+          value={val}
+          onChange={onChangeFun}
+          onFocus={onfocusFun}
+          onBlur={onBlurFun}
         />
       </div>
     </div>
