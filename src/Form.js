@@ -3,18 +3,22 @@ import "./App.css";
 import CommonInput from "./CommonComponent/CommonInput";
 function Form() {
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   console.log("Form -> firstName", firstName);
+  console.log("Form -> lastName", lastName);
+
   return (
-    <div className="App">
+    <div className="">
       <CommonInput
         label="First Name"
-        value="priynaka"
-        onChangeFun={(e) => setFirstName(e.taget.value)}
+        value={firstName}
+        onChangeFun={(e) => setFirstName(e.target.value)}
       />
-      <CommonInput label="Last Name" />
-      <CommonInput />
-      <CommonInput />
-      <CommonInput />
+      <CommonInput
+        label="Last Name"
+        value={lastName}
+        onChangeFun={(e) => setLastName(e.target.value)}
+      />
     </div>
   );
 }
