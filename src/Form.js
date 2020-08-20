@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import CommonInput from "./CommonComponent/CommonInput";
+import CommonSelect from "./CommonComponent/CommonSelect";
 function Form() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -19,6 +20,8 @@ function Form() {
         value={lastName}
         onChangeFun={(e) => setLastName(e.target.value)}
       />
+      {/* //////// */}
+      <CommonSelect />
     </div>
   );
 }

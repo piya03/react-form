@@ -20,3 +20,25 @@
     height: 41px;
     font-size: 16px;
 }
+/* //////////select */
+.selectBox{
+    background: #f5faf8;
+    padding: 5px 5px 5px 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    border: 1px solid teal;
+    border-radius: 5px;
+}
+.bottomOption {
+    height: 150px;
+    overflow: auto;
+}
+.bottomOption div{
+    background: #f5faf8;
+    padding: 10px;
+}
+.bottomOption div:hover {
+    background: turquoise;
+}
