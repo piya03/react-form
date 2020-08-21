@@ -29,11 +29,21 @@ function CommonInput({ value, onChangeFun, onBlurFun, label, error }) {
     lableRef.current.style.color = "black";
     setVal(e.target.value);
   }
+  useEffect(() => {
+    inputRef.current.click();
+  });
 
   return (
     <div>
       <div className="inputBox">
-        <label htmlFor="" className="inputLable" ref={lableRef}>
+        <label
+          onClick={(e) => {
+            inputRef.current.focus();
+          }}
+          htmlFor=""
+          className="inputLable"
+          ref={lableRef}
+        >
           {label}
         </label>
         <input

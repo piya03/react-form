@@ -38,7 +38,9 @@
 .bottomOption div{
     background: #f5faf8;
     padding: 10px;
+  
 }
 .bottomOption div:hover {
     background: turquoise;
+    cursor: pointer;
 }

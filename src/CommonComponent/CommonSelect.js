@@ -5,6 +5,8 @@ function CommonSelect({ passOptions }) {
     label: "Select Value",
     value: "",
   });
+  const [showOptions, setShowOptions] = useState(false);
+  console.log("CommonSelect -> showOptions", showOptions);
   let options = [
     {
       label: "one",
@@ -30,26 +32,32 @@ function CommonSelect({ passOptions }) {
   return (
     <React.Fragment>
       <div>
-        <div className="selectBox">{selectVal.value}</div>
-        <div className="bottomOption">
-          {options &&
-            options.map((each, index) => {
-              return (
-                <div
-                  onClick={(e) => {
-                    setSelectVal({
-                      label: each.label,
-                      value: each.value,
-                    });
-                    console.log("CommonSelect -> e", e.target.innerHTML);
-                  }}
-                  key={index}
-                >
-                  {each.value}
-                </div>
-              );
-            })}
+        <div onClick={() => setShowOptions(true)} className="selectBox">
+          {selectVal.label}
         </div>
+        {showOptions && (
+          <div className="bottomOption">
+            {options &&
+              options.map((each, index) => {
+                return (
+                  <div
+                    onClick={(e) => {
+                      setSelectVal({
+                        ...selectVal,
+                        label: each.label,
+                        value: each.value,
+                      });
+                      setShowOptions(false);
+                      console.log("CommonSelect -> e", e.target.innerHTML);
+                    }}
+                    key={index}
+                  >
+                    {each.value}
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </React.Fragment>
   );
