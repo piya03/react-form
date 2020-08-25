@@ -1,34 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
-function CommonSelect({ passOptions }) {
-  const [selectVal, setSelectVal] = useState({
-    label: "Select Value",
-    value: "",
-  });
+function CommonSelect({ options, selectVal, setSelectVal }) {
   const [showOptions, setShowOptions] = useState(false);
-  console.log("CommonSelect -> showOptions", showOptions);
-  let options = [
-    {
-      label: "one",
-      value: "one",
-    },
-    {
-      label: "Two",
-      value: "Two",
-    },
-    {
-      label: "Three",
-      value: "Three",
-    },
-    {
-      label: "Four",
-      value: "Four",
-    },
-    {
-      label: "Five",
-      value: "Five",
-    },
-  ];
   return (
     <React.Fragment>
       <div>
