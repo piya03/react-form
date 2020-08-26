@@ -10,6 +10,8 @@ function Form() {
     label: "Select Value",
     value: "",
   });
+  const [radioVal, setRadioVal] = useState("");
+  console.log("Form -> radioVal", radioVal);
   let daysOptions = [
     {
       label: "one",
@@ -55,7 +57,31 @@ function Form() {
       />
 
       {/* ////// */}
-      <CommonRadioBtn />
+      <div>
+        <CommonRadioBtn
+          checked={radioVal == "firstVal" ? true : false}
+          name="test"
+          value="firstVal"
+          onChange={(e) => {
+            console.log("Form -> e first one", e);
+            setRadioVal(e.target.value);
+          }}
+        />
+        <p style={{ paddingLeft: "35px" }}> toggle</p>
+      </div>
+      <div>
+        <CommonRadioBtn
+          checked={radioVal == "seconVal" ? true : false}
+          name="test"
+          value="seconVal"
+          onChange={(e) => {
+            console.log("Form -> e second", e);
+
+            setRadioVal(e.target.value);
+          }}
+        />
+        <p style={{ paddingLeft: "35px" }}> another toggle</p>
+      </div>
     </div>
   );
 }
