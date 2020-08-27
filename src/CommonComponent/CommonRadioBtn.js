@@ -3,8 +3,9 @@ import "./style.css";
 
 function CommonRadioBtn({ name, value, onChange, checked }) {
   return (
-    <React.Fragment>
+    <>
       <div className="radioBtn">
+        <span className="checkmark"></span>
         <input
           type="radio"
           value={value}
@@ -12,9 +13,9 @@ function CommonRadioBtn({ name, value, onChange, checked }) {
           name={name}
           onChange={onChange}
         />
-        <span className="checkmark"></span>
+        {checked && <span className="checked"></span>}
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
