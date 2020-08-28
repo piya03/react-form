@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
-function CommonSelect({ options, selectVal, setSelectVal }) {
+function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
   const [showOptions, setShowOptions] = useState(false);
   return (
     <React.Fragment>
-      <div>
+      <div style={styleContainer}>
         <div onClick={() => setShowOptions(true)} className="selectBox">
           {selectVal.label}
         </div>

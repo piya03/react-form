@@ -3,6 +3,8 @@ import "./App.css";
 import CommonInput from "./CommonComponent/CommonInput";
 import CommonSelect from "./CommonComponent/CommonSelect";
 import CommonRadioBtn from "./CommonComponent/CommonRadioBtn";
+import CommonDatePicker from "./CommonComponent/CommonDatePicker";
+
 function Form() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -57,9 +59,9 @@ function Form() {
       />
 
       {/* ////// */}
-      <div>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <CommonRadioBtn
-          checked={radioVal == "firstVal" ? true : false}
+          checked={radioVal === "firstVal" ? true : false}
           name="test"
           value="firstVal"
           onChange={(e) => {
@@ -69,9 +71,9 @@ function Form() {
         />
         <p style={{ paddingLeft: "35px" }}> toggle</p>
       </div>
-      <div>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <CommonRadioBtn
-          checked={radioVal == "seconVal" ? true : false}
+          checked={radioVal === "seconVal" ? true : false}
           name="test"
           value="seconVal"
           onChange={(e) => {
@@ -82,6 +84,10 @@ function Form() {
         />
         <p style={{ paddingLeft: "35px" }}> another toggle</p>
       </div>
+
+      {/* ///////////// */}
+
+      <CommonDatePicker />
     </div>
   );
 }
