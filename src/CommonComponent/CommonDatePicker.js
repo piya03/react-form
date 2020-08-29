@@ -32,21 +32,63 @@ let monthOptions = function () {
 let yearOptions = function () {
   let baseYear = 1950;
   let currentYear = moment().format("YYYY");
-  let option = [];
+  let options = [];
   for (let i = baseYear; i <= currentYear; i++) {
-    option.push({
+    options.push({
       label: i,
       value: i,
     });
   }
-  return option.reverse();
+  return options.reverse();
+};
+//moment().format('MM'); //08
+// moment().format('DD'); //28
+//moment().month("July").format("M"); // 7
+//moment("2012-02", "YYYY-MM").daysInMonth() // 29
+//moment("2012-01", "YYYY-MM").daysInMonth() // 31
+let dateOptions = function (passyear, passmonth) {
+  console.log("dateOptions -> passmonth", passmonth);
+  console.log("dateOptions -> passyear", passyear);
+  let options = [];
+  let getdaysInMonth = moment(
+    `${passyear}-${passmonth}`,
+    "YYYY-MMMMM"
+  ).daysInMonth();
+  for (let i = 1; i <= getdaysInMonth; i++) {
+    options.push({
+      label: i,
+      value: i,
+    });
+  }
+  return options;
 };
 
-function CommonDatePicker() {
-  const [month, setMonth] = useState({ label: "Month", value: "" });
-  const [year, setYear] = useState({ label: "Year", value: "" });
+function CommonDatePicker({
+  styleContainer,
+  month,
+  setMonth,
+  year,
+  setYear,
+  days,
+  setDays,
+}) {
+  //   const [month, setMonth] = useState({ label: "Month", value: "" });
+  //   const [year, setYear] = useState({ label: "Year", value: "" });
+  //   const [days, setDays] = useState({ label: "Day", value: "" });
+
   return (
-    <div>
+    <div className="datePickerBox" style={styleContainer}>
+      <CommonSelect
+        selectVal={days}
+        setSelectVal={(e) => {
+          setDays(e);
+        }}
+        options={dateOptions(year.value, month.value)}
+        styleContainer={{
+          width: "100px",
+        }}
+      />
+
       <CommonSelect
         selectVal={month}
         setSelectVal={(e) => {
@@ -54,7 +96,7 @@ function CommonDatePicker() {
         }}
         options={monthOptions()}
         styleContainer={{
-          width: "100px",
+          width: "120px",
         }}
       />
       <CommonSelect

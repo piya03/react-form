@@ -13,7 +13,9 @@ function Form() {
     value: "",
   });
   const [radioVal, setRadioVal] = useState("");
-  console.log("Form -> radioVal", radioVal);
+  const [month, setMonth] = useState({ label: "Month", value: "" });
+  const [year, setYear] = useState({ label: "Year", value: "" });
+  const [days, setDays] = useState({ label: "Day", value: "" });
   let daysOptions = [
     {
       label: "one",
@@ -87,7 +89,14 @@ function Form() {
 
       {/* ///////////// */}
 
-      <CommonDatePicker />
+      <CommonDatePicker
+        month={month}
+        setMonth={setMonth}
+        year={year}
+        setYear={setYear}
+        days={days}
+        setDays={setDays}
+      />
     </div>
   );
 }

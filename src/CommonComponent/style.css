@@ -36,8 +36,9 @@
     overflow: auto;
 }
 .bottomOption div{
-    background: #f5faf8;
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
   
 }
 .bottomOption div:hover {
@@ -106,4 +107,11 @@
       border-radius: 50%;
       background: teal;
       z-index: 1;
+  }
+
+
+  /* /////////// */
+  .datePickerBox {
+    display: flex;
+    justify-content: space-between;
   }

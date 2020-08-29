@@ -1,7 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
 function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
+  console.log("CommonSelect -> selectVal", selectVal);
   const [showOptions, setShowOptions] = useState(false);
+  const [showCheck, setShowCheck] = useState(false);
   return (
     <React.Fragment>
       <div style={styleContainer}>
@@ -13,19 +15,26 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
             {options &&
               options.map((each, index) => {
                 return (
-                  <div
-                    onClick={(e) => {
-                      setSelectVal({
-                        ...selectVal,
-                        label: each.label,
-                        value: each.value,
-                      });
-                      setShowOptions(false);
-                      console.log("CommonSelect -> e", e.target.innerHTML);
-                    }}
-                    key={index}
-                  >
-                    {each.value}
+                  <div key={index}>
+                    <div
+                      onClick={(e) => {
+                        setSelectVal({
+                          ...selectVal,
+                          label: each.label,
+                          value: each.value,
+                        });
+                        setShowOptions(false);
+                        //  setShowCheck(true);
+                      }}
+                      key={index}
+                    >
+                      {each.value}
+                    </div>
+                    {selectVal.value === each.value && (
+                      <span style={{ color: "teal", fontSize: "13px" }}>
+                        <i class="fa fa-check"></i>
+                      </span>
+                    )}
                   </div>
                 );
               })}
