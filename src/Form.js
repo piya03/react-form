@@ -7,7 +7,9 @@ import CommonDatePicker from "./CommonComponent/CommonDatePicker";
 
 function Form() {
   const [firstName, setFirstName] = useState("");
+  console.log("Form -> firstName", firstName);
   const [lastName, setLastName] = useState("");
+  console.log("Form -> lastName", lastName);
   const [selectedOption, setSelectedOption] = useState({
     label: "Select Value",
     value: "",
@@ -43,11 +45,13 @@ function Form() {
       <CommonInput
         label="First Name"
         value={firstName}
+        setValue={setFirstName}
         onChangeFun={(e) => setFirstName(e.target.value)}
       />
       <CommonInput
         label="Last Name"
         value={lastName}
+        setValue={setLastName}
         onChangeFun={(e) => setLastName(e.target.value)}
       />
       {/* //////// */}

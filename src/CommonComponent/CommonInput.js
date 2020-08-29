@@ -1,21 +1,27 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
 
-function CommonInput({ value, onChangeFun, onBlurFun, label, error }) {
+function CommonInput({
+  value,
+  setValue,
+  onChangeFun,
+  onBlurFun,
+  label,
+  error,
+}) {
   const lableRef = useRef(null);
   const inputRef = useRef(null);
-  const [val, setVal] = useState("");
   function onfocusFun() {
     lableRef.current.style.top = "-10px";
     lableRef.current.style.left = "12px";
     lableRef.current.style.transition = "all .2s";
   }
   function onBlurFun() {
-    if (val) {
+    if (value) {
       inputRef.current.style.border = "1px solid black";
       return;
     }
-    if (!val) {
+    if (!value) {
       error = true;
       inputRef.current.style.border = "1px solid red";
       lableRef.current.style.color = "red";
@@ -27,7 +33,7 @@ function CommonInput({ value, onChangeFun, onBlurFun, label, error }) {
 
   function onChangeFun(e) {
     lableRef.current.style.color = "black";
-    setVal(e.target.value);
+    setValue(e.target.value);
   }
   useEffect(() => {
     inputRef.current.click();
@@ -50,7 +56,7 @@ function CommonInput({ value, onChangeFun, onBlurFun, label, error }) {
           ref={inputRef}
           className="input"
           type="text"
-          value={val}
+          value={value}
           onChange={onChangeFun}
           onFocus={onfocusFun}
           onBlur={onBlurFun}
