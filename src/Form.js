@@ -42,6 +42,7 @@ function Form() {
   ];
   return (
     <div className="">
+      <h2 className="details">User Details</h2>
       <CommonInput
         label="First Name"
         value={firstName}
@@ -58,10 +59,12 @@ function Form() {
       <CommonSelect
         selectVal={selectedOption}
         setSelectVal={(e) => {
-          console.log("Form -> e who i am", e);
           setSelectedOption(e);
         }}
         options={daysOptions}
+        styleContainer={{
+          width: "325px",
+        }}
       />
 
       {/* ////// */}

@@ -3,4 +3,12 @@
     margin: 10px;
     margin: auto;
     margin-top: 30px;
+    background: #e9e7e747;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 12px #5754542b;
+}
+.details{
+    text-align: center;
+    color: darkred;
 }
