@@ -72,10 +72,6 @@ function CommonDatePicker({
   days,
   setDays,
 }) {
-  //   const [month, setMonth] = useState({ label: "Month", value: "" });
-  //   const [year, setYear] = useState({ label: "Year", value: "" });
-  //   const [days, setDays] = useState({ label: "Day", value: "" });
-
   return (
     <div className="datePickerBox" style={styleContainer}>
       <CommonSelect
