@@ -7,6 +7,8 @@
     padding: 22px;
     border-radius: 10px;
     box-shadow: 1px 1px 12px #5754542b;
+    display: flex;
+    justify-content: center;
 }
 .details{
     text-align: center;

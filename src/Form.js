@@ -78,7 +78,7 @@ function Form() {
             setRadioVal(e.target.value);
           }}
         />
-        <p style={{ paddingLeft: "35px" }}> toggle</p>
+        <p style={{ paddingLeft: "20px" }}> toggle</p>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <CommonRadioBtn
@@ -91,7 +91,7 @@ function Form() {
             setRadioVal(e.target.value);
           }}
         />
-        <p style={{ paddingLeft: "35px" }}> another toggle</p>
+        <p style={{ paddingLeft: "20px" }}> another toggle</p>
       </div>
 
       {/* ///////////// */}
