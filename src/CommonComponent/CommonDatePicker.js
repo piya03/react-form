@@ -47,8 +47,6 @@ let yearOptions = function () {
 //moment("2012-02", "YYYY-MM").daysInMonth() // 29
 //moment("2012-01", "YYYY-MM").daysInMonth() // 31
 let dateOptions = function (passyear, passmonth) {
-  console.log("dateOptions -> passmonth", passmonth);
-  console.log("dateOptions -> passyear", passyear);
   let options = [];
   let getdaysInMonth = moment(
     `${passyear}-${passmonth}`,
@@ -81,7 +79,7 @@ function CommonDatePicker({
         }}
         options={dateOptions(year.value, month.value)}
         styleContainer={{
-          width: "100px",
+          width: "80px",
         }}
       />
 
@@ -92,7 +90,7 @@ function CommonDatePicker({
         }}
         options={monthOptions()}
         styleContainer={{
-          width: "120px",
+          width: "110px",
         }}
       />
       <CommonSelect
@@ -102,7 +100,7 @@ function CommonDatePicker({
         }}
         options={yearOptions()}
         styleContainer={{
-          width: "100px",
+          width: "80px",
         }}
       />
     </div>

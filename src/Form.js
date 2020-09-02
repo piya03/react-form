@@ -4,7 +4,7 @@ import CommonInput from "./CommonComponent/CommonInput";
 import CommonSelect from "./CommonComponent/CommonSelect";
 import CommonRadioBtn from "./CommonComponent/CommonRadioBtn";
 import CommonDatePicker from "./CommonComponent/CommonDatePicker";
-
+import CommonBtn from "./CommonComponent/CommonBtn";
 function Form() {
   const [firstName, setFirstName] = useState("");
   console.log("Form -> firstName", firstName);
@@ -104,6 +104,9 @@ function Form() {
         days={days}
         setDays={setDays}
       />
+      <div style={{ margin: "30px 0px 10px 0px", textAlign: "center" }}>
+        <CommonBtn text="Submit" />
+      </div>
     </div>
   );
 }
