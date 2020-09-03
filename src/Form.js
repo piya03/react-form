@@ -7,9 +7,7 @@ import CommonDatePicker from "./CommonComponent/CommonDatePicker";
 import CommonBtn from "./CommonComponent/CommonBtn";
 function Form() {
   const [firstName, setFirstName] = useState("");
-  console.log("Form -> firstName", firstName);
   const [lastName, setLastName] = useState("");
-  console.log("Form -> lastName", lastName);
   const [selectedOption, setSelectedOption] = useState({
     label: "Select Value",
     value: "",
@@ -74,7 +72,6 @@ function Form() {
           name="test"
           value="firstVal"
           onChange={(e) => {
-            console.log("Form -> e first one", e);
             setRadioVal(e.target.value);
           }}
         />
@@ -86,8 +83,6 @@ function Form() {
           name="test"
           value="seconVal"
           onChange={(e) => {
-            console.log("Form -> e second", e);
-
             setRadioVal(e.target.value);
           }}
         />

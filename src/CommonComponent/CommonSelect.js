@@ -6,7 +6,12 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
   const [showCheck, setShowCheck] = useState(false);
   return (
     <React.Fragment>
-      <div style={styleContainer}>
+      <div
+        style={{
+          position: "relative",
+          ...styleContainer,
+        }}
+      >
         <div onClick={() => setShowOptions(true)} className="selectBox">
           {selectVal.label}
         </div>
@@ -24,7 +29,6 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
                           value: each.value,
                         });
                         setShowOptions(false);
-                        //  setShowCheck(true);
                       }}
                       key={index}
                     >
