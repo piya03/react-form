@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 export const useClickOutside = function (initialVal = false) {
   const ref = useRef(null);
@@ -9,11 +9,18 @@ export const useClickOutside = function (initialVal = false) {
       setVisible(false);
     }
   }
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      setVisible(false);
+    }
+  }
 
   useEffect(() => {
-    document.addEventListener("click", handleClick);
+    document.addEventListener("click", handleClick, true);
+    document.addEventListener("keydown", handleKeyDown, true);
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener("click", handleClick, true);
+      document.removeEventListener("keydowm", handleKeyDown, true);
     };
   }, [ref]);
 

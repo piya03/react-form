@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./style.css";
+import { useClickOutside } from "../Hooks/useClickOutside";
+
 function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
-  console.log("CommonSelect -> selectVal", selectVal);
-  const [showOptions, setShowOptions] = useState(false);
-  const [showCheck, setShowCheck] = useState(false);
+  const { visible, setVisible, ref } = useClickOutside(false);
+
   return (
     <React.Fragment>
       <div
@@ -12,11 +13,11 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
           ...styleContainer,
         }}
       >
-        <div onClick={() => setShowOptions(true)} className="selectBox">
+        <div onClick={() => setVisible(true)} className="selectBox">
           {selectVal.label}
         </div>
-        {showOptions && (
-          <div className="bottomOption">
+        {visible && (
+          <div className="bottomOption" ref={ref}>
             {options &&
               options.map((each, index) => {
                 return (
@@ -28,7 +29,7 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
                           label: each.label,
                           value: each.value,
                         });
-                        setShowOptions(false);
+                        setVisible(false);
                       }}
                       key={index}
                     >
@@ -36,7 +37,7 @@ function CommonSelect({ options, selectVal, setSelectVal, styleContainer }) {
                     </div>
                     {selectVal.value === each.value && (
                       <span style={{ color: "teal", fontSize: "13px" }}>
-                        <i class="fa fa-check"></i>
+                        <i className="fa fa-check"></i>
                       </span>
                     )}
                   </div>

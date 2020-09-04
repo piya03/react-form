@@ -36,6 +36,11 @@ function CommonInput({
     setValue(e.target.value);
   }
   useEffect(() => {
+    if (value) {
+      lableRef.current.style.top = "-10px";
+      lableRef.current.style.left = "12px";
+      lableRef.current.style.transition = "all .2s";
+    }
     inputRef.current.click();
   });
 
