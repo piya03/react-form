@@ -40,17 +40,17 @@ function Form() {
     getFromLocalStorage("setRadioVal") || ""
   );
   const [month, setMonth] = useState(bulkGetLocalStorage("setMonth")) || {
-      label: "Select Value",
+      label: "Month",
       value: "",
     } || { label: "Month", value: "" };
 
   const [year, setYear] = useState(bulkGetLocalStorage("setYear")) || {
-      label: "Select Value",
+      label: "Year",
       value: "",
     } || { label: "Year", value: "" };
 
   const [days, setDays] = useState(bulkGetLocalStorage("setDays")) || {
-      label: "Select Value",
+      label: "Day",
       value: "",
     } || { label: "Day", value: "" };
 

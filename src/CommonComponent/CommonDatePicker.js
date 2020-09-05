@@ -77,7 +77,14 @@ function CommonDatePicker({
         setSelectVal={(e) => {
           setDays(e);
         }}
-        options={dateOptions(year.value, month.value)}
+        options={
+          year && month
+            ? dateOptions(year.value, month.value)
+            : {
+                label: "Select Day",
+                value: "",
+              }
+        }
         styleContainer={{
           width: "80px",
         }}
