@@ -6,18 +6,32 @@ import CommonRadioBtn from "./CommonComponent/CommonRadioBtn";
 import CommonDatePicker from "./CommonComponent/CommonDatePicker";
 import CommonBtn from "./CommonComponent/CommonBtn";
 
-function setLocalStorage(key, value) {
-  localStorage.setItem(key, value);
+//Object.keys(object1)
+function bulkSetLocalStorage(obj) {
+  Object.keys(obj).map((each) => {
+    console.log("bulkSetLocalStorage -> each", each);
+    localStorage.setItem(each, JSON.stringify(obj[each]));
+  });
+}
+// function setLocalStorage(key, value) {
+//   localStorage.setItem(key, value);
+// }
+
+function bulkGetLocalStorage(obj) {
+  Object.keys(obj).map((each) => {
+    console.log("bulkGetLocalStorage -> each", each);
+    JSON.parse(localStorage.getItem(each));
+  });
 }
 
-function bulkSetLocalStorage(obj, value) {
-  localStorage.setItem(obj, JSON.stringify(value));
-  //localStorage.setItem("setDays", JSON.stringify(days));
-}
-function bulkGetLocalStorage(obj) {
-  JSON.parse(localStorage.getItem(obj));
-  // JSON.parse(getFromLocalStorage("setSelectOption")) || {
-}
+// function bulkSetLocalStorage(obj, value) {
+//   localStorage.setItem(obj, JSON.stringify(value));
+//   //localStorage.setItem("setDays", JSON.stringify(days));
+// }
+// function bulkGetLocalStorage(obj) {
+//   JSON.parse(localStorage.getItem(obj));
+//   // JSON.parse(getFromLocalStorage("setSelectOption")) || {
+// }
 
 function getFromLocalStorage(key) {
   return localStorage.getItem(key);
@@ -29,30 +43,19 @@ function Form() {
   const [lastName, setLastName] = useState(
     getFromLocalStorage("setLastName") || ""
   );
-  const [selectedOption, setSelectedOption] = useState(
-    bulkGetLocalStorage("setSelectOption")
-  ) || {
+  const [selectedOption, setSelectedOption] = useState({
     label: "Select Value",
     value: "",
-  };
+  });
 
   const [radioVal, setRadioVal] = useState(
     getFromLocalStorage("setRadioVal") || ""
   );
-  const [month, setMonth] = useState(bulkGetLocalStorage("setMonth")) || {
-      label: "Month",
-      value: "",
-    } || { label: "Month", value: "" };
+  const [month, setMonth] = useState({ label: "Month", value: "" });
 
-  const [year, setYear] = useState(bulkGetLocalStorage("setYear")) || {
-      label: "Year",
-      value: "",
-    } || { label: "Year", value: "" };
+  const [year, setYear] = useState({ label: "2020", value: "2020" });
 
-  const [days, setDays] = useState(bulkGetLocalStorage("setDays")) || {
-      label: "Day",
-      value: "",
-    } || { label: "Day", value: "" };
+  const [days, setDays] = useState({ label: "Day", value: "" });
 
   let daysOptions = [
     {
@@ -77,18 +80,22 @@ function Form() {
     },
   ];
 
+  let allObj = {
+    setFirstName: firstName,
+    setLastName: lastName,
+    setRadioVal: radioVal,
+    setMonth: month,
+    setYear: year,
+    setDays: days,
+    setSelectOption: selectedOption,
+  };
+  console.log(
+    bulkGetLocalStorage(allObj),
+    "bulkGetLocalStoragebulkGetLocalStoragebulkGetLocalStorage"
+  );
   function submitForm() {
-    // {
-    //   setFirstName: firstName,
-
-    // }
-    setLocalStorage("setFirstName", firstName);
-    setLocalStorage("setLastName", lastName);
-    setLocalStorage("setRadioVal", radioVal);
-    bulkSetLocalStorage("setMonth", month);
-    bulkSetLocalStorage("setYear", year);
-    bulkSetLocalStorage("setDays", days);
-    bulkSetLocalStorage("setSelectOption", selectedOption);
+    bulkSetLocalStorage(allObj);
+    // setLocalStorage("setFirstName", firstName);
   }
   return (
     <div className="">
@@ -109,6 +116,8 @@ function Form() {
       <CommonSelect
         selectVal={selectedOption}
         setSelectVal={(e) => {
+          console.log("Form -> e", e);
+
           setSelectedOption(e);
         }}
         options={daysOptions}
