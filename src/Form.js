@@ -9,25 +9,32 @@ import CommonBtn from "./CommonComponent/CommonBtn";
 //Object.keys(object1)
 function bulkSetLocalStorage(obj) {
   Object.keys(obj).map((each) => {
-    console.log("bulkSetLocalStorage -> each", each);
-    localStorage.setItem(each, JSON.stringify(obj[each]));
+    localStorage.setItem(
+      each,
+      typeof obj[each] === "object" ? JSON.stringify(obj[each]) : obj[each]
+    );
   });
 }
 // function setLocalStorage(key, value) {
 //   localStorage.setItem(key, value);
 // }
 
-function bulkGetLocalStorage(obj) {
-  Object.keys(obj).map((each) => {
-    console.log("bulkGetLocalStorage -> each", each);
-    JSON.parse(localStorage.getItem(each));
-  });
+function bulkGetLocalStorage(arr) {
+  // debugger;
+  if (!Array.isArray(arr)) {
+    return localStorage.getItem(arr);
+  }
+
+  const n = arr.reduce((acc, each) => {
+    const v = localStorage.getItem(each);
+
+    acc[each] = v;
+    return acc;
+  }, {});
+
+  return n;
 }
 
-// function bulkSetLocalStorage(obj, value) {
-//   localStorage.setItem(obj, JSON.stringify(value));
-//   //localStorage.setItem("setDays", JSON.stringify(days));
-// }
 // function bulkGetLocalStorage(obj) {
 //   JSON.parse(localStorage.getItem(obj));
 //   // JSON.parse(getFromLocalStorage("setSelectOption")) || {
@@ -38,24 +45,35 @@ function getFromLocalStorage(key) {
 }
 function Form() {
   const [firstName, setFirstName] = useState(
-    getFromLocalStorage("setFirstName") || ""
+    bulkGetLocalStorage("setFirstName") || ""
   );
   const [lastName, setLastName] = useState(
-    getFromLocalStorage("setLastName") || ""
+    bulkGetLocalStorage("setLastName") || ""
   );
-  const [selectedOption, setSelectedOption] = useState({
-    label: "Select Value",
-    value: "",
-  });
+  const [selectedOption, setSelectedOption] = useState(
+    JSON.parse(bulkGetLocalStorage("setSelectOption")) || {
+      label: "Select Value",
+      value: "",
+    }
+  );
 
   const [radioVal, setRadioVal] = useState(
-    getFromLocalStorage("setRadioVal") || ""
+    bulkGetLocalStorage("setRadioVal") || ""
   );
-  const [month, setMonth] = useState({ label: "Month", value: "" });
+  const [month, setMonth] = useState(
+    JSON.parse(bulkGetLocalStorage("setMonth")) || { label: "Month", value: "" }
+  );
 
-  const [year, setYear] = useState({ label: "2020", value: "2020" });
+  const [year, setYear] = useState(
+    JSON.parse(bulkGetLocalStorage("setYear")) || {
+      label: "2020",
+      value: "2020",
+    }
+  );
 
-  const [days, setDays] = useState({ label: "Day", value: "" });
+  const [days, setDays] = useState(
+    JSON.parse(bulkGetLocalStorage("setDays")) || { label: "Day", value: "" }
+  );
 
   let daysOptions = [
     {
@@ -79,7 +97,6 @@ function Form() {
       value: "Five",
     },
   ];
-
   let allObj = {
     setFirstName: firstName,
     setLastName: lastName,
@@ -89,14 +106,37 @@ function Form() {
     setDays: days,
     setSelectOption: selectedOption,
   };
-  console.log(
-    bulkGetLocalStorage(allObj),
-    "bulkGetLocalStoragebulkGetLocalStoragebulkGetLocalStorage"
-  );
+
+  //  {
+  //   setFirstName: value
+  //  }
   function submitForm() {
     bulkSetLocalStorage(allObj);
-    // setLocalStorage("setFirstName", firstName);
+    console.log(
+      bulkGetLocalStorage([
+        "setFirstName",
+        "setLastName",
+        "setRadioVal",
+        "setMonth",
+        "setYear",
+        "setDays",
+        "setSelectOption",
+      ]),
+      "how to get items"
+    );
   }
+
+  console.log(
+    bulkGetLocalStorage([
+      "setFirstName",
+      "setLastName",
+      "setRadioVal",
+      "setMonth",
+      "setYear",
+      "setDays",
+      "setSelectOption",
+    ])
+  );
   return (
     <div className="">
       <h2 className="details">User Details</h2>
